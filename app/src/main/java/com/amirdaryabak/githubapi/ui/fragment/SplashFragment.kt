@@ -1,6 +1,7 @@
 package com.amirdaryabak.githubapi.ui.fragment
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import com.amirdaryabak.githubapi.databinding.FragmentSplashBinding
 import com.amirdaryabak.githubapi.ui.BaseFragment
 import com.amirdaryabak.githubapi.ui.MainActivity
 import com.amirdaryabak.githubapi.ui.viewmodel.AddModelViewModel
+import com.amirdaryabak.githubapi.util.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -34,6 +36,12 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val intent = Intent(
+            Intent.ACTION_VIEW,
+            Uri.parse("https://github.com/login/oauth/authorize?client_id=${Constants.clientId}&redirect_uri=${Constants.redirectUrl}"),
+        ).apply {
+            startActivity(this)
+        }
         binding.apply {
 
         }

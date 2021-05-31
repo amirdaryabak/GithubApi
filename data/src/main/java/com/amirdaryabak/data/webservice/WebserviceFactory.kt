@@ -14,7 +14,7 @@ import javax.inject.Singleton
 class WebserviceFactory @Inject constructor() {
 
     companion object {
-        private const val BASE_URL = ""
+        private const val BASE_URL = "https://api.github.com/"
         private const val HEADER_NAME_AUTHORIZATION = "Authorization"
         private const val HEADER_VALUE_AUTHORIZATION = "token"
     }
