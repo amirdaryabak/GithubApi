@@ -1,8 +1,11 @@
 package com.amirdaryabak.githubapi.ui
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -11,6 +14,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.amirdaryabak.githubapi.R
 import com.amirdaryabak.githubapi.databinding.ActivityLoginBinding
+import com.amirdaryabak.githubapi.util.Constants
 import com.amirdaryabak.githubapi.util.networkCapabilities.ConnectionLiveData
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -68,8 +72,28 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        intent?.let {
+            val uri = it.data
+            if (uri != null){
+                val code = uri.getQueryParameter("code")
+                Toast.makeText(this, code, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        navigateToTrackingFragmentIfNeeded(intent)
+    }
+
+    private fun navigateToTrackingFragmentIfNeeded(intent: Intent?) {
+
     }
 
 }

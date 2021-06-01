@@ -23,6 +23,10 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
     private val binding get() = _binding!!
     private val viewModel: AddModelViewModel by viewModels()
 
+    companion object {
+        var isFirstTime = true
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,12 +40,15 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val intent = Intent(
-            Intent.ACTION_VIEW,
-            Uri.parse("https://github.com/login/oauth/authorize?client_id=${Constants.clientId}&redirect_uri=${Constants.redirectUrl}"),
-        ).apply {
-            startActivity(this)
+        if (isFirstTime) {
+            isFirstTime = false
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://github.com/login/oauth/authorize?client_id=${Constants.clientId}&redirect_uri=${Constants.redirectUrl}"),
+            )
+            startActivity(intent)
         }
+
         binding.apply {
 
         }

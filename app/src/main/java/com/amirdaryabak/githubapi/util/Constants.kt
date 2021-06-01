@@ -6,5 +6,5 @@ object Constants {
 
     const val clientId = "ae25b9137ceca66f218c"
     const val clientSecrets = "0aa714e697d0fa0b4207099c7581be91750e69d2"
-    const val redirectUrl = "amirdaryabak://callback"
+    const val redirectUrl = "amirdaryabak://oauth2redirect"
 }

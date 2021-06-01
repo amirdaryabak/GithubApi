@@ -23,9 +23,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data
-                    android:host="www.amirdaryabak.com"
-                    android:path="/oauth2redirect"
-                    android:scheme="https" />
+                    android:host="oauth2redirect"
+                    android:scheme="amirdaryabak" />
             </intent-filter>
         </activity>
         <activity android:name="com.amirdaryabak.githubapi.ui.MainActivity" />
