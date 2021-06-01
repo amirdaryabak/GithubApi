@@ -14,9 +14,9 @@ import javax.inject.Singleton
 class WebserviceFactory @Inject constructor() {
 
     companion object {
-        private const val BASE_URL = "https://api.github.com/"
-        private const val HEADER_NAME_AUTHORIZATION = "Authorization"
-        private const val HEADER_VALUE_AUTHORIZATION = "token"
+        private const val BASE_URL = "https://github.com/"
+        private const val HEADER_NAME_ACCEPT = "Content-Type"
+        private const val HEADER_VALUE_ACCEPT = "application/json"
     }
 
     private val retrofit = Retrofit.Builder()
@@ -53,10 +53,6 @@ class WebserviceFactory @Inject constructor() {
             val original = chain.request()
 
             val request = original.newBuilder()
-                .header(
-                    HEADER_NAME_AUTHORIZATION,
-                    HEADER_VALUE_AUTHORIZATION
-                )
                 .method(original.method, original.body)
                 .build()
 

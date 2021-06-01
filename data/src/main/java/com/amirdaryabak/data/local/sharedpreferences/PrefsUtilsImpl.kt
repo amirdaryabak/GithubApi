@@ -1,13 +1,18 @@
 package com.amirdaryabak.data.local.sharedpreferences
 
 import android.content.SharedPreferences
+import javax.inject.Inject
+import javax.inject.Singleton
 
-private const val PREF_CONST = "PREF_CONST"
+private const val PREF_CODE = "PREF_CODE"
 
-class PrefsUtilsImpl constructor(private val prefs: SharedPreferences) : PrefsUtils {
+@Singleton
+class PrefsUtilsImpl @Inject constructor(private val prefs: SharedPreferences) : PrefsUtils {
 
-    override fun set(string: String?) = prefs.edit().putString(PREF_CONST, string).apply()
-    override fun get(): String? = prefs.getString(PREF_CONST, null)
+    override fun haveCode() = getCode() != ""
+
+    override fun setCode(string: String) = prefs.edit().putString(PREF_CODE, string).apply()
+    override fun getCode(): String = prefs.getString(PREF_CODE, "") ?: ""
 
     override fun clearData() = prefs.edit().clear().apply()
 

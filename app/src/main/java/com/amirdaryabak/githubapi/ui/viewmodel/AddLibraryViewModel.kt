@@ -15,9 +15,13 @@ class AddModelViewModel
     private val repository: MainRepository,
 ) : ViewModel() {
 
-    fun addModel(model: Model) = liveData {
+    fun getAccessToken(
+        clientId: String,
+        clientSecret: String,
+        code: String,
+    ) = liveData {
         emit(Event(Resource.loading(null)))
-        emit(Event(repository.addModel(model)))
+        emit(Event(repository.getAccessToken(clientId, clientSecret, code)))
     }
 
 }

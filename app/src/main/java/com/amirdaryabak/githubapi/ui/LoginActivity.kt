@@ -12,11 +12,14 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.amirdaryabak.data.local.sharedpreferences.PrefsUtils
+import com.amirdaryabak.data.local.sharedpreferences.PrefsUtilsImpl
 import com.amirdaryabak.githubapi.R
 import com.amirdaryabak.githubapi.databinding.ActivityLoginBinding
 import com.amirdaryabak.githubapi.util.Constants
 import com.amirdaryabak.githubapi.util.networkCapabilities.ConnectionLiveData
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
@@ -26,6 +29,9 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     private lateinit var connectionLiveData: ConnectionLiveData
+
+    @Inject
+    lateinit var prefsUtils: PrefsUtils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,12 +80,12 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        intent?.let {
-            val uri = it.data
-            if (uri != null){
+        intent?.let { intent ->
+            intent.data?.let { uri ->
                 val code = uri.getQueryParameter("code")
-                Toast.makeText(this, code, Toast.LENGTH_SHORT).show()
+                prefsUtils.setCode(code ?: "")
             }
+
         }
     }
 

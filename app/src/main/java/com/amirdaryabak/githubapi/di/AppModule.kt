@@ -2,6 +2,8 @@ package com.amirdaryabak.githubapi.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.amirdaryabak.data.local.sharedpreferences.PrefsUtils
+import com.amirdaryabak.data.local.sharedpreferences.PrefsUtilsImpl
 import com.amirdaryabak.data.repository.MainRepository
 import com.amirdaryabak.data.repository.MainRepositoryImpl
 import com.amirdaryabak.githubapi.util.Constants.SHARED_PREFERENCES_NAME

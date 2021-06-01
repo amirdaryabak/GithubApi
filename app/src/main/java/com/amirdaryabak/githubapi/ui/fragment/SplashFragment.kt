@@ -6,7 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
+import com.amirdaryabak.data.local.sharedpreferences.PrefsUtils
+import com.amirdaryabak.data.utils.Status
 import com.amirdaryabak.githubapi.R
 import com.amirdaryabak.githubapi.databinding.FragmentSplashBinding
 import com.amirdaryabak.githubapi.ui.BaseFragment
@@ -14,6 +17,7 @@ import com.amirdaryabak.githubapi.ui.MainActivity
 import com.amirdaryabak.githubapi.ui.viewmodel.AddModelViewModel
 import com.amirdaryabak.githubapi.util.Constants
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -22,6 +26,9 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
     private var _binding: FragmentSplashBinding? = null
     private val binding get() = _binding!!
     private val viewModel: AddModelViewModel by viewModels()
+
+    @Inject
+    lateinit var prefsUtils: PrefsUtils
 
     companion object {
         var isFirstTime = true
@@ -48,6 +55,39 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
             )
             startActivity(intent)
         }
+
+        if (prefsUtils.haveCode()) {
+            viewModel.getAccessToken(
+                Constants.clientId,
+                Constants.clientSecrets,
+                prefsUtils.getCode(),
+            ).observe(viewLifecycleOwner) { event ->
+                event.getContentIfNotHandled()?.let { response ->
+                    when (response.status) {
+                        Status.SUCCESS -> {
+//                            binding.progressBar.visibility = View.GONE
+                            response.data?.let { result ->
+                                Toast.makeText(requireContext(), result.accessToken, Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                        Status.ERROR -> {
+                            binding.apply {
+//                                progressBar.visibility = View.GONE
+//                                txtEmptyList.visibility = View.VISIBLE
+//                                txtEmptyList.text = response.message
+                            }
+                        }
+                        Status.LOADING -> {
+                            binding.apply {
+//                                txtEmptyList.visibility = View.GONE
+//                                progressBar.visibility = View.VISIBLE
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
 
         binding.apply {
 
