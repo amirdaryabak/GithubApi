@@ -58,5 +58,6 @@ dependencies {
     implementation(Dependencies.App.liveDataKtx)
     implementation(Dependencies.App.timber)
     implementation(Dependencies.App.eventbus)
+    implementation(Dependencies.App.securityCrypto)
 
 }
