@@ -1,5 +1,6 @@
 package com.amirdaryabak.data.local.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -19,6 +20,9 @@ interface MyDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRepos(repos: List<Repos>)
+
+    @Query("SELECT * FROM repos ORDER BY id ASC")
+    fun getAllRepos(): LiveData<List<Repos>?>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUserFollowers(userFollowers: List<UserFollowers>)

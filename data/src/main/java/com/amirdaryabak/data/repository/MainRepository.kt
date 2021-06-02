@@ -1,5 +1,6 @@
 package com.amirdaryabak.data.repository
 
+import androidx.lifecycle.LiveData
 import com.amirdaryabak.data.entity.getrepository.Repos
 import com.amirdaryabak.data.entity.getuser.User
 import com.amirdaryabak.data.entity.userfollowers.UserFollowers
@@ -18,6 +19,8 @@ interface MainRepository {
     suspend fun getLastUser(): User?
 
     suspend fun insertRepos(repos: List<Repos>)
+
+    fun getAllRepos(): LiveData<List<Repos>?>
 
     suspend fun insertUserFollowers(userFollowers: List<UserFollowers>)
 

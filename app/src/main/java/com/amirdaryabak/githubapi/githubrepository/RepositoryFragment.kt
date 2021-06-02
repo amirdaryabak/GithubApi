@@ -63,6 +63,7 @@ class RepositoryFragment : BaseFragment(R.layout.fragment_github_repository) {
                             }
                         }
                         Status.ERROR -> {
+                            getReposFromDB()
                             showSnackbar() {
                                 viewModel.getRepos(prefsUtils.getUserName())
                             }
@@ -78,6 +79,15 @@ class RepositoryFragment : BaseFragment(R.layout.fragment_github_repository) {
                         else -> Unit
                     }
                 }
+            }
+        }
+    }
+
+    private fun getReposFromDB() {
+        viewModel.getAllRepos.observe(viewLifecycleOwner) {
+            it?.let { repos ->
+                binding.progressBar.visibility = View.GONE
+                setupRecyclerView(repos)
             }
         }
     }

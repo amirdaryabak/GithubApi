@@ -33,4 +33,6 @@ class GithubRepositoryViewModel
         repository.insertRepos(repos)
     }
 
+    val getAllRepos = repository.getAllRepos()
+
 }
