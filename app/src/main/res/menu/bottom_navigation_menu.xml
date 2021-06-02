@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_history_cargoes_graph"
-        android:title="سوابق بار"
+        android:title="ریپازیتوری"
         android:icon="@drawable/ic_launcher_foreground"/>
     <item
         android:id="@+id/nav_special_cargoes_graph"
@@ -11,13 +11,5 @@
     <item
         android:id="@+id/nav_all_cargoes_graph"
         android:title="جستجو بار"
-        android:icon="@drawable/ic_launcher_foreground"/>
-    <item
-        android:id="@+id/nav_messages_graph"
-        android:title="پیام ها"
-        android:icon="@drawable/ic_launcher_foreground"/>
-    <item
-        android:id="@+id/nav_profile_graph"
-        android:title="پروفایل"
         android:icon="@drawable/ic_launcher_foreground"/>
 </menu>

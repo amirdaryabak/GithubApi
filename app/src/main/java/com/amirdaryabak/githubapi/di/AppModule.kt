@@ -6,6 +6,8 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 import com.amirdaryabak.data.local.sharedpreferences.PrefsUtils
 import com.amirdaryabak.data.local.sharedpreferences.PrefsUtilsImpl
+import com.amirdaryabak.data.repository.LoginRepository
+import com.amirdaryabak.data.repository.LoginRepositoryImpl
 import com.amirdaryabak.data.repository.MainRepository
 import com.amirdaryabak.data.repository.MainRepositoryImpl
 import com.amirdaryabak.githubapi.util.Constants.SHARED_PREFERENCES_NAME
@@ -43,7 +45,12 @@ object AppModule {
     fun provideEventBus(): EventBus = EventBus.getDefault()
 
     @Provides
-    fun provideLibraryRepository(mainRepositoryImpl: MainRepositoryImpl): MainRepository {
+    fun provideLoginRepository(loginRepositoryImpl: LoginRepositoryImpl): LoginRepository {
+        return loginRepositoryImpl
+    }
+
+    @Provides
+    fun provideMainRepository(mainRepositoryImpl: MainRepositoryImpl): MainRepository {
         return mainRepositoryImpl
     }
 

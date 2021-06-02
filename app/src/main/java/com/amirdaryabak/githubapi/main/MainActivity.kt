@@ -1,4 +1,4 @@
-package com.amirdaryabak.githubapi.ui
+package com.amirdaryabak.githubapi.main
 
 import android.os.Bundle
 import android.view.View
@@ -9,8 +9,8 @@ import androidx.navigation.NavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.amirdaryabak.githubapi.R
 import com.amirdaryabak.githubapi.databinding.ActivityMainBinding
-import dagger.hilt.android.AndroidEntryPoint
 import com.amirdaryabak.githubapi.ui.navigation.setupWithNavController
+import dagger.hilt.android.AndroidEntryPoint
 import com.amirdaryabak.githubapi.util.networkCapabilities.ConnectionLiveData
 
 @AndroidEntryPoint
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupBottomNavigationBar() {
         val navGraphIds = listOf(
-            R.navigation.nav_graph,
+            R.navigation.nav_repository,
         )
 
         // Setup the bottom navigation view with a list of navigation graphs

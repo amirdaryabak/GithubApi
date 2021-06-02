@@ -1,10 +1,9 @@
-package com.amirdaryabak.githubapi.ui.viewmodel
+package com.amirdaryabak.githubapi.githubrepository
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.amirdaryabak.data.entity.AccessToken
-import com.amirdaryabak.data.entity.Model
+import com.amirdaryabak.data.repository.LoginRepository
 import com.amirdaryabak.data.repository.MainRepository
 import com.amirdaryabak.data.utils.Event
 import com.amirdaryabak.data.utils.Resource
@@ -16,7 +15,7 @@ import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 @HiltViewModel
-class AddModelViewModel
+class GithubRepositoryViewModel
 @Inject constructor(
     private val repository: MainRepository,
 ) : ViewModel() {
