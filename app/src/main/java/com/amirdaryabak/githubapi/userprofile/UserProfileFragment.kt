@@ -42,7 +42,7 @@ class UserProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getUser()
+        viewModel.getUser("token ${prefsUtils.getToken()}")
 
         viewModel.getLastUser().observe(viewLifecycleOwner) {
             it?.let { user ->
@@ -65,7 +65,7 @@ class UserProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
                         }
                         Status.ERROR -> {
                             showSnackbar() {
-                                viewModel.getUser()
+                                viewModel.getUser("token ${prefsUtils.getToken()}")
                             }
                             binding.apply {
                                 progressBar.visibility = View.GONE

@@ -8,11 +8,11 @@ import com.amirdaryabak.data.utils.Resource
 
 interface MainRepository {
 
-    suspend fun getUser(): Resource<User>
+    suspend fun getUser(token: String): Resource<User>
 
-    suspend fun getRepos(owner: String): Resource<List<Repos>>
+    suspend fun getRepos(token: String, owner: String): Resource<List<Repos>>
 
-    suspend fun getFollowers(): Resource<List<UserFollowers>>
+    suspend fun getFollowers(token: String): Resource<List<UserFollowers>>
 
     suspend fun insertUser(user: User)
 

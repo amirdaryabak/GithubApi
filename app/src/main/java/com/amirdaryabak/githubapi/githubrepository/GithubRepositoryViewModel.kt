@@ -24,9 +24,9 @@ class GithubRepositoryViewModel
         MutableStateFlow<Event<Resource<List<Repos>>>>(Event(Resource.empty(null)))
     val getRepos = _getRepos
 
-    fun getRepos(owner: String) = viewModelScope.launch {
+    fun getRepos(token: String, owner: String) = viewModelScope.launch {
         _getRepos.value = Event(Resource.loading(null))
-        _getRepos.value = Event(repository.getRepos(owner))
+        _getRepos.value = Event(repository.getRepos(owner, token))
     }
 
     fun insertRepos(repos: List<Repos>) = viewModelScope.launch {

@@ -28,9 +28,9 @@ class UserProfileViewModel
         MutableStateFlow<User?>(null)
     val getLastUser = _getLastUser
 
-    fun getUser() = viewModelScope.launch {
+    fun getUser(token: String) = viewModelScope.launch {
         _getUser.value = Event(Resource.loading(null))
-        _getUser.value = Event(repository.getUser())
+        _getUser.value = Event(repository.getUser(token))
     }
 
     fun insertUser(user: User) = viewModelScope.launch {

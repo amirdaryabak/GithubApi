@@ -20,9 +20,6 @@ class WebserviceFactory @Inject constructor(
         private const val BASE_URL = "https://api.github.com/"
     }
 
-    private val headerNameAuthorization = "Authorization"
-    private val headerValueAuthorization = "token ${prefsUtils.getToken()}"
-
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
@@ -57,10 +54,6 @@ class WebserviceFactory @Inject constructor(
             val original = chain.request()
 
             val request = original.newBuilder()
-                .header(
-                    headerNameAuthorization,
-                    headerValueAuthorization
-                )
                 .method(original.method, original.body)
                 .build()
 

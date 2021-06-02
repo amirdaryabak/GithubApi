@@ -25,9 +25,9 @@ class UserFollowersViewModel
         MutableStateFlow<Event<Resource<List<UserFollowers>>>>(Event(Resource.empty(null)))
     val getFollowers = _getFollowers
 
-    fun getFollowers() = viewModelScope.launch {
+    fun getFollowers(token: String) = viewModelScope.launch {
         _getFollowers.value = Event(Resource.loading(null))
-        _getFollowers.value = Event(repository.getFollowers())
+        _getFollowers.value = Event(repository.getFollowers(token))
     }
 
     fun insertUserFollowers(userFollowers: List<UserFollowers>) = viewModelScope.launch {

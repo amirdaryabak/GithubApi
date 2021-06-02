@@ -45,7 +45,7 @@ class RepositoryFragment : BaseFragment(R.layout.fragment_github_repository) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getRepos(prefsUtils.getUserName())
+        viewModel.getRepos("token ${prefsUtils.getToken()}", prefsUtils.getUserName())
 
         binding.apply {
 
@@ -65,7 +65,10 @@ class RepositoryFragment : BaseFragment(R.layout.fragment_github_repository) {
                         Status.ERROR -> {
                             getReposFromDB()
                             showSnackbar() {
-                                viewModel.getRepos(prefsUtils.getUserName())
+                                viewModel.getRepos(
+                                    "token ${prefsUtils.getToken()}",
+                                    prefsUtils.getUserName()
+                                )
                             }
                             binding.apply {
                                 progressBar.visibility = View.GONE

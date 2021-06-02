@@ -20,15 +20,20 @@ interface MyWebservice {
 
     @Headers("Accept: application/json")
     @GET("user")
-    suspend fun getUser(): User
+    suspend fun getUser(
+        @Header("Authorization") token: String,
+    ): User
 
     @Headers("Accept: application/json")
     @GET("users/{owner}/repos")
     suspend fun getRepos(
+        @Header("Authorization") token: String,
         @Path("owner") owner: String,
     ): List<Repos>
 
     @Headers("Accept: application/json")
     @GET("user/followers")
-    suspend fun getFollowers(): List<UserFollowers>
+    suspend fun getFollowers(
+        @Header("Authorization") token: String,
+    ): List<UserFollowers>
 }

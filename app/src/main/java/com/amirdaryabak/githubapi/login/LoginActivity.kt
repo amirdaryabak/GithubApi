@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -16,6 +15,7 @@ import com.amirdaryabak.githubapi.databinding.ActivityLoginBinding
 import com.amirdaryabak.githubapi.main.MainActivity
 import com.amirdaryabak.githubapi.util.Constants
 import com.amirdaryabak.githubapi.util.networkCapabilities.ConnectionLiveData
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
@@ -25,6 +25,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
+    private var code: String? = ""
     private lateinit var binding: ActivityLoginBinding
     private val viewModel: LoginViewModel by viewModels()
 
@@ -47,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
         if (intent.data != null) {
             intent?.let { intent ->
                 intent.data?.let { uri ->
-                    val code = uri.getQueryParameter("code")
+                    code = uri.getQueryParameter("code")
                     viewModel.getAccessToken(
                         Constants.clientId,
                         Constants.clientSecrets,
@@ -84,6 +85,13 @@ class LoginActivity : AppCompatActivity() {
                             }
                         }
                         Status.ERROR -> {
+                            showSnackbar() {
+                                viewModel.getAccessToken(
+                                    Constants.clientId,
+                                    Constants.clientSecrets,
+                                    code ?: "",
+                                )
+                            }
                             binding.apply {
                                 progressBar.visibility = View.GONE
                             }
@@ -130,20 +138,22 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        /*intent?.let { intent ->
-            intent.data?.let { uri ->
-                haveCode = true
-                val code = uri.getQueryParameter("code")
-                viewModel.getAccessToken(
-                    Constants.clientId,
-                    Constants.clientSecrets,
-                    code ?: "",
-                )
+    private fun showSnackbar(
+        text: String = "خطا در برقراری ارتباط",
+        actionText: String = "تلاش مجدد",
+        duration: Int = Snackbar.LENGTH_LONG,
+        callFunction: () -> Unit = {}
+    ) {
+        Snackbar.make(
+            binding.rootView, text,
+            duration
+        ).setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE)
+            .setAction(actionText) {
+                callFunction.invoke()
+            }.apply {
+                setActionTextColor(ContextCompat.getColor(this@LoginActivity, R.color.black))
             }
-
-        }*/
+            .show()
     }
 
 }

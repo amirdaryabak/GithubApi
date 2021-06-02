@@ -17,13 +17,13 @@ class MainRepositoryImpl
     private val api: MyWebservice
 ) : MainRepository {
 
-    override suspend fun getUser(): Resource<User> = safeApiCall { api.getUser() }
+    override suspend fun getUser(token: String): Resource<User> = safeApiCall { api.getUser(token) }
 
-    override suspend fun getRepos(owner: String): Resource<List<Repos>> =
-        safeApiCall { api.getRepos(owner) }
+    override suspend fun getRepos(token: String, owner: String): Resource<List<Repos>> =
+        safeApiCall { api.getRepos(owner, token) }
 
-    override suspend fun getFollowers(): Resource<List<UserFollowers>> =
-        safeApiCall { api.getFollowers() }
+    override suspend fun getFollowers(token: String): Resource<List<UserFollowers>> =
+        safeApiCall { api.getFollowers(token) }
 
     override suspend fun insertUser(user: User) = myDao.insertUser(user)
 

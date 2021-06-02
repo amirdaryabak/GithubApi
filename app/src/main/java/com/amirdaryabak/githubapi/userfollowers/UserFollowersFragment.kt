@@ -45,7 +45,7 @@ class UserFollowersFragment : BaseFragment(R.layout.fragment_user_followers) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getFollowers()
+        viewModel.getFollowers("token ${prefsUtils.getToken()}")
 
         lifecycleScope.launchWhenStarted {
             viewModel.getFollowers.collect { event ->
@@ -61,7 +61,7 @@ class UserFollowersFragment : BaseFragment(R.layout.fragment_user_followers) {
                         Status.ERROR -> {
                             getUserFollowersFromDB()
                             showSnackbar() {
-                                viewModel.getFollowers()
+                                viewModel.getFollowers("token ${prefsUtils.getToken()}")
                             }
                             binding.apply {
                                 progressBar.visibility = View.GONE
