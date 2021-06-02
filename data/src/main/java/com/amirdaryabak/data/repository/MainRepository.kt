@@ -13,4 +13,10 @@ interface MainRepository {
 
     suspend fun getFollowers(): Resource<List<UserFollowers>>
 
+    suspend fun insertUser(user: User)
+
+    /*suspend fun insertRepos(repos: List<Repos>)
+
+    suspend fun insertUserFollowers(userFollowers: List<UserFollowers>)*/
+
 }

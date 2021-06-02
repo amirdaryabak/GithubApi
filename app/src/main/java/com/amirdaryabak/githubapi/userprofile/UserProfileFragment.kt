@@ -52,6 +52,7 @@ class UserProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
                             binding.progressBar.visibility = View.GONE
                             response.data?.let { result ->
                                 setUpViews(result)
+                                viewModel.insertUser(result)
                                 prefsUtils.setUserName(result.login)
                             }
                         }

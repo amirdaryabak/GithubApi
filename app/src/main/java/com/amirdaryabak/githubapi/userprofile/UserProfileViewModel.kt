@@ -28,4 +28,8 @@ class UserProfileViewModel
         _getUser.value = Event(repository.getUser())
     }
 
+    fun insertUser(user: User) = viewModelScope.launch {
+        repository.insertUser(user)
+    }
+
 }

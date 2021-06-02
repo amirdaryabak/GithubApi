@@ -59,6 +59,7 @@ class RepositoryFragment : BaseFragment(R.layout.fragment_github_repository) {
                             binding.progressBar.visibility = View.GONE
                             response.data?.let { result ->
                                 setupRecyclerView(result)
+//                                viewModel.insertRepos(result)
                             }
                         }
                         Status.ERROR -> {

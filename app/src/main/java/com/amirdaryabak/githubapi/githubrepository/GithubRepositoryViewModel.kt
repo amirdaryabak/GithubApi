@@ -3,6 +3,7 @@ package com.amirdaryabak.githubapi.githubrepository
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.amirdaryabak.data.entity.getrepository.Repos
+import com.amirdaryabak.data.entity.getuser.User
 import com.amirdaryabak.data.repository.MainRepository
 import com.amirdaryabak.data.utils.Event
 import com.amirdaryabak.data.utils.Resource
@@ -27,5 +28,9 @@ class GithubRepositoryViewModel
         _getRepos.value = Event(Resource.loading(null))
         _getRepos.value = Event(repository.getRepos(owner))
     }
+
+    /*fun insertRepos(repos: List<Repos>) = viewModelScope.launch {
+        repository.insertRepos(repos)
+    }*/
 
 }

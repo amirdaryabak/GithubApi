@@ -4,7 +4,7 @@ object Dependencies {
     private const val navigationVersion = "2.3.0"
     private const val hiltVersion = "2.35"
     private const val hiltJetpackVersion = "1.0.0-alpha03"
-    private const val roomVersion = "2.2.5"
+    private const val roomVersion = "2.3.0"
     private const val retrofitVersion = "2.9.0"
     private const val lifeCycleVersion = "2.2.0"
     private const val coroutinesVersion = "1.3.9"

@@ -2,6 +2,7 @@ package com.amirdaryabak.githubapi.userfollowers
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.amirdaryabak.data.entity.getrepository.Repos
 import com.amirdaryabak.data.entity.getuser.User
 import com.amirdaryabak.data.entity.userfollowers.UserFollowers
 import com.amirdaryabak.data.repository.MainRepository
@@ -28,5 +29,9 @@ class UserFollowersViewModel
         _getFollowers.value = Event(Resource.loading(null))
         _getFollowers.value = Event(repository.getFollowers())
     }
+
+    /*fun insertUserFollowers(userFollowers: List<UserFollowers>) = viewModelScope.launch {
+        repository.insertUserFollowers(userFollowers)
+    }*/
 
 }

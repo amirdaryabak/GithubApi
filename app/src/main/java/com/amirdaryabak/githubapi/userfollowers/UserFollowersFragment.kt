@@ -55,6 +55,7 @@ class UserFollowersFragment : BaseFragment(R.layout.fragment_user_followers) {
                             binding.progressBar.visibility = View.GONE
                             response.data?.let { result ->
                                 setupRecyclerView(result)
+//                                viewModel.insertUserFollowers(result)
                             }
                         }
                         Status.ERROR -> {

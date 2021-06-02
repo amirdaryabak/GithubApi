@@ -25,4 +25,11 @@ class MainRepositoryImpl
     override suspend fun getFollowers(): Resource<List<UserFollowers>> =
         safeApiCall { api.getFollowers() }
 
+    override suspend fun insertUser(user: User) = myDao.insertUser(user)
+
+    /*override suspend fun insertRepos(repos: List<Repos>) = myDao.insertRepos(repos)
+
+    override suspend fun insertUserFollowers(userFollowers: List<UserFollowers>) =
+        myDao.insertUserFollowers(userFollowers)*/
+
 }
