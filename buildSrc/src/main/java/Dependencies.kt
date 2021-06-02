@@ -41,6 +41,7 @@ object Dependencies {
         const val timber = Common.timber
         const val eventbus = "org.greenrobot:eventbus:3.2.0"
         const val securityCrypto = "androidx.security:security-crypto:1.1.0-alpha03"
+        const val coil = "io.coil-kt:coil:1.2.1"
     }
 
     object Data {

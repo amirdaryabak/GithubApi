@@ -63,5 +63,6 @@ dependencies {
     implementation(Dependencies.App.timber)
     implementation(Dependencies.App.eventbus)
     implementation(Dependencies.App.securityCrypto)
+    implementation(Dependencies.App.coil)
 
 }

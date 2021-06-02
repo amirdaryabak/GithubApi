@@ -3,6 +3,7 @@ package com.amirdaryabak.data.webservice
 import com.amirdaryabak.data.entity.AccessToken
 import com.amirdaryabak.data.entity.getrepository.Repos
 import com.amirdaryabak.data.entity.getuser.User
+import com.amirdaryabak.data.entity.userfollowers.UserFollowers
 import retrofit2.http.*
 
 interface MyWebservice {
@@ -25,5 +26,9 @@ interface MyWebservice {
     @GET("users/{owner}/repos")
     suspend fun getRepos(
         @Path("owner") owner: String,
-    ): Repos
+    ): List<Repos>
+
+    @Headers("Accept: application/json")
+    @GET("user/followers")
+    suspend fun getFollowers(): List<UserFollowers>
 }

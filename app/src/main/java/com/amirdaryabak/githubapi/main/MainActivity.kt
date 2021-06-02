@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         val navGraphIds = listOf(
             R.navigation.nav_user,
             R.navigation.nav_repository,
-            R.navigation.nav_repository,
+            R.navigation.nav_followers,
         )
 
         // Setup the bottom navigation view with a list of navigation graphs

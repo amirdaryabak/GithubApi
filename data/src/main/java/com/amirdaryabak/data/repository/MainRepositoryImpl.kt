@@ -2,6 +2,7 @@ package com.amirdaryabak.data.repository
 
 import com.amirdaryabak.data.entity.getrepository.Repos
 import com.amirdaryabak.data.entity.getuser.User
+import com.amirdaryabak.data.entity.userfollowers.UserFollowers
 import com.amirdaryabak.data.local.database.MyDao
 import com.amirdaryabak.data.local.sharedpreferences.PrefsUtils
 import com.amirdaryabak.data.utils.Resource
@@ -18,7 +19,10 @@ class MainRepositoryImpl
 
     override suspend fun getUser(): Resource<User> = safeApiCall { api.getUser() }
 
-    override suspend fun getRepos(owner: String): Resource<Repos> =
+    override suspend fun getRepos(owner: String): Resource<List<Repos>> =
         safeApiCall { api.getRepos(owner) }
+
+    override suspend fun getFollowers(): Resource<List<UserFollowers>> =
+        safeApiCall { api.getFollowers() }
 
 }

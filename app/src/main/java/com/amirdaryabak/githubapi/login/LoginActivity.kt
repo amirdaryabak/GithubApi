@@ -56,13 +56,18 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         } else {
-            val intent = Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse(
-                    "https://github.com/login/oauth/authorize?client_id=${Constants.clientId}&redirect_uri=${Constants.redirectUrl}"
-                ),
-            )
-            startActivity(intent)
+            if (prefsUtils.isAuthenticated()) {
+                intentToMainActivity()
+            } else {
+                val intent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(
+                        "https://github.com/login/oauth/authorize?client_id=${Constants.clientId}&redirect_uri=${Constants.redirectUrl}"
+                    ),
+                )
+                startActivity(intent)
+            }
+
         }
 
 

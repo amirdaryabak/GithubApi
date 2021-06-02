@@ -9,7 +9,7 @@
         android:title="Repository"
         android:icon="@drawable/ic_launcher_foreground"/>
     <item
-        android:id="@+id/nav_all_cargoes_graph"
-        android:title="جستجو بار"
+        android:id="@+id/nav_followers"
+        android:title="Followers"
         android:icon="@drawable/ic_launcher_foreground"/>
 </menu>

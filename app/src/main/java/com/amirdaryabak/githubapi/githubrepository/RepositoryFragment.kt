@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.amirdaryabak.data.entity.getrepository.Repos
 import com.amirdaryabak.data.local.sharedpreferences.PrefsUtils
 import com.amirdaryabak.data.utils.Status
 import com.amirdaryabak.githubapi.R
@@ -25,6 +27,8 @@ class RepositoryFragment : BaseFragment(R.layout.fragment_github_repository) {
     private var _binding: FragmentGithubRepositoryBinding? = null
     private val binding get() = _binding!!
     private val viewModel: GithubRepositoryViewModel by viewModels()
+
+    private lateinit var reposAdapter: ReposAdapter
 
     @Inject
     lateinit var prefsUtils: PrefsUtils
@@ -54,10 +58,13 @@ class RepositoryFragment : BaseFragment(R.layout.fragment_github_repository) {
                         Status.SUCCESS -> {
                             binding.progressBar.visibility = View.GONE
                             response.data?.let { result ->
-                                Toast.makeText(requireContext(), "yay", Toast.LENGTH_SHORT).show()
+                                setupRecyclerView(result)
                             }
                         }
                         Status.ERROR -> {
+                            showSnackbar() {
+                                viewModel.getRepos(prefsUtils.getUserName())
+                            }
                             binding.apply {
                                 progressBar.visibility = View.GONE
                             }
@@ -71,6 +78,24 @@ class RepositoryFragment : BaseFragment(R.layout.fragment_github_repository) {
                     }
                 }
             }
+        }
+    }
+
+    private fun setupAdapter(content: List<Repos>) {
+        reposAdapter = ReposAdapter(
+            clickListener = { item, position ->
+                Toast.makeText(requireContext(), item.name, Toast.LENGTH_SHORT).show()
+            },
+        )
+        reposAdapter.submitList(content)
+    }
+
+    private fun setupRecyclerView(content: List<Repos>) {
+        setupAdapter(content)
+        with(binding.rvRepos) {
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+            adapter = reposAdapter
         }
     }
 

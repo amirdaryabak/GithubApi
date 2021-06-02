@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/userProfileFragment"
         android:name="com.amirdaryabak.githubapi.userprofile.UserProfileFragment"
-        android:label="UserProfileFragment"
+        android:label="Your Profile"
         tools:layout="@layout/fragment_user_profile"/>
 
 </navigation>

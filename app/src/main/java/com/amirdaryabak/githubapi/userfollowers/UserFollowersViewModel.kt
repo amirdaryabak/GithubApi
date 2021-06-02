@@ -1,8 +1,9 @@
-package com.amirdaryabak.githubapi.githubrepository
+package com.amirdaryabak.githubapi.userfollowers
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.amirdaryabak.data.entity.getrepository.Repos
+import com.amirdaryabak.data.entity.getuser.User
+import com.amirdaryabak.data.entity.userfollowers.UserFollowers
 import com.amirdaryabak.data.repository.MainRepository
 import com.amirdaryabak.data.utils.Event
 import com.amirdaryabak.data.utils.Resource
@@ -14,18 +15,18 @@ import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 @HiltViewModel
-class GithubRepositoryViewModel
+class UserFollowersViewModel
 @Inject constructor(
     private val repository: MainRepository,
 ) : ViewModel() {
 
-    private val _getRepos =
-        MutableStateFlow<Event<Resource<List<Repos>>>>(Event(Resource.empty(null)))
-    val getRepos = _getRepos
+    private val _getFollowers =
+        MutableStateFlow<Event<Resource<List<UserFollowers>>>>(Event(Resource.empty(null)))
+    val getFollowers = _getFollowers
 
-    fun getRepos(owner: String) = viewModelScope.launch {
-        _getRepos.value = Event(Resource.loading(null))
-        _getRepos.value = Event(repository.getRepos(owner))
+    fun getFollowers() = viewModelScope.launch {
+        _getFollowers.value = Event(Resource.loading(null))
+        _getFollowers.value = Event(repository.getFollowers())
     }
 
 }
