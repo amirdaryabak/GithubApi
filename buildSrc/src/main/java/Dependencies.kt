@@ -7,6 +7,7 @@ object Dependencies {
     private const val roomVersion = "2.2.5"
     private const val retrofitVersion = "2.9.0"
     private const val lifeCycleVersion = "2.2.0"
+    private const val coroutinesVersion = "1.3.9"
 
     private object Common {
         const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
@@ -31,7 +32,11 @@ object Dependencies {
         const val hiltViewModel = "androidx.hilt:hilt-lifecycle-viewmodel:$hiltJetpackVersion"
         const val hiltJetpackCompiler = "androidx.hilt:hilt-compiler:$hiltJetpackVersion"
         const val room = Common.room
-        const val viewModel = "androidx.lifecycle:lifecycle-viewmodel:$lifeCycleVersion"
+        const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleVersion"
+        const val viewModelRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:$lifeCycleVersion"
+        const val activityViewModel = "androidx.activity:activity-ktx:1.1.0"
+        const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+        const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
         const val liveDataKtx = Common.liveDataKtx
         const val timber = Common.timber
         const val eventbus = "org.greenrobot:eventbus:3.2.0"
@@ -50,6 +55,11 @@ object Dependencies {
         const val okhttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.9.0"
         const val liveDataKtx = Common.liveDataKtx
         const val timber = Common.timber
+    }
+
+    object Login {
+        const val kotlinStdLib = Common.kotlinStdLib
+        const val core = Common.core
     }
 
 }

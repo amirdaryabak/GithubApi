@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.amirdaryabak.data.local.sharedpreferences.PrefsUtils
 import com.amirdaryabak.data.utils.Status
 import com.amirdaryabak.githubapi.R
@@ -17,9 +18,12 @@ import com.amirdaryabak.githubapi.ui.MainActivity
 import com.amirdaryabak.githubapi.ui.viewmodel.AddModelViewModel
 import com.amirdaryabak.githubapi.util.Constants
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 
+@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class SplashFragment : BaseFragment(R.layout.fragment_splash) {
 
@@ -61,27 +65,32 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
                 Constants.clientId,
                 Constants.clientSecrets,
                 prefsUtils.getCode(),
-            ).observe(viewLifecycleOwner) { event ->
-                event.getContentIfNotHandled()?.let { response ->
-                    when (response.status) {
-                        Status.SUCCESS -> {
+            )
+            lifecycleScope.launchWhenResumed {
+                viewModel.getAccessToken.collect { event ->
+                    event.getContentIfNotHandled()?.let { response ->
+                        when (response.status) {
+                            Status.SUCCESS -> {
 //                            binding.progressBar.visibility = View.GONE
-                            response.data?.let { result ->
-                                Toast.makeText(requireContext(), result.accessToken, Toast.LENGTH_SHORT).show()
+                                response.data?.let { result ->
+                                    prefsUtils.setToken(result.accessToken)
+                                    intentToMainActivity()
+                                }
                             }
-                        }
-                        Status.ERROR -> {
-                            binding.apply {
+                            Status.ERROR -> {
+                                binding.apply {
 //                                progressBar.visibility = View.GONE
 //                                txtEmptyList.visibility = View.VISIBLE
 //                                txtEmptyList.text = response.message
+                                }
                             }
-                        }
-                        Status.LOADING -> {
-                            binding.apply {
+                            Status.LOADING -> {
+                                binding.apply {
 //                                txtEmptyList.visibility = View.GONE
 //                                progressBar.visibility = View.VISIBLE
+                                }
                             }
+                            else -> Unit
                         }
                     }
                 }
@@ -94,7 +103,7 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
         }
     }
 
-    private fun intentToHomeActivity() {
+    private fun intentToMainActivity() {
         Intent(requireActivity(), MainActivity::class.java).also {
             it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(it)

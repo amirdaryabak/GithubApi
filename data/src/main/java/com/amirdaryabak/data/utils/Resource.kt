@@ -23,11 +23,16 @@ data class Resource<out T>(
         fun <T> loading(data: T?): Resource<T> {
             return Resource(Status.LOADING, data, null)
         }
+
+        fun <T> empty(data: T?): Resource<T> {
+            return Resource(Status.EMPTY, data, null)
+        }
     }
 }
 
 enum class Status {
     SUCCESS,
     ERROR,
-    LOADING
+    LOADING,
+    EMPTY
 }

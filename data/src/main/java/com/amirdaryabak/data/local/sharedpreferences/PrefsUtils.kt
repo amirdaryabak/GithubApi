@@ -8,6 +8,9 @@ interface PrefsUtils {
     fun getCode(): String
     fun setCode(string: String)
 
+    fun getToken(): String
+    fun setToken(string: String)
+
     fun clearData()
 
 }
