@@ -36,4 +36,6 @@ class MainRepositoryImpl
     override suspend fun insertUserFollowers(userFollowers: List<UserFollowers>) =
         myDao.insertUserFollowers(userFollowers)
 
+    override fun getAllUserFollowers() = myDao.getAllUserFollowers()
+
 }

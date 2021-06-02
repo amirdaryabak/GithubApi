@@ -59,6 +59,7 @@ class UserFollowersFragment : BaseFragment(R.layout.fragment_user_followers) {
                             }
                         }
                         Status.ERROR -> {
+                            getUserFollowersFromDB()
                             showSnackbar() {
                                 viewModel.getFollowers()
                             }
@@ -74,6 +75,15 @@ class UserFollowersFragment : BaseFragment(R.layout.fragment_user_followers) {
                         else -> Unit
                     }
                 }
+            }
+        }
+    }
+
+    private fun getUserFollowersFromDB() {
+        viewModel.getAllUserFollowers.observe(viewLifecycleOwner) {
+            it?.let { userFollowers ->
+                binding.progressBar.visibility = View.GONE
+                setupRecyclerView(userFollowers)
             }
         }
     }

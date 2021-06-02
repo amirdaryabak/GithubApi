@@ -27,4 +27,7 @@ interface MyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUserFollowers(userFollowers: List<UserFollowers>)
 
+    @Query("SELECT * FROM userfollowers ORDER BY login ASC")
+    fun getAllUserFollowers(): LiveData<List<UserFollowers>?>
+
 }

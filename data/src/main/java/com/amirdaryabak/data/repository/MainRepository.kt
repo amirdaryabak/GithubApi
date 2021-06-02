@@ -24,4 +24,6 @@ interface MainRepository {
 
     suspend fun insertUserFollowers(userFollowers: List<UserFollowers>)
 
+    fun getAllUserFollowers(): LiveData<List<UserFollowers>?>
+
 }

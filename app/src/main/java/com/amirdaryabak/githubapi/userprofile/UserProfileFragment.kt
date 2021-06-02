@@ -85,7 +85,9 @@ class UserProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
 
     private fun setUpViews(result: User) {
         binding.apply {
-            ivAvatar.load(result.avatar_url)
+            ivAvatar.load(result.avatar_url) {
+                placeholder(R.drawable.ic_launcher_foreground)
+            }
             txtName.text = result.name
             txtUserName.text = result.login
             txtUserBio.text = result.bio

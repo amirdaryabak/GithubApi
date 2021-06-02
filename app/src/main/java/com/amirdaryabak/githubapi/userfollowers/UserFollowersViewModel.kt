@@ -34,4 +34,6 @@ class UserFollowersViewModel
         repository.insertUserFollowers(userFollowers)
     }
 
+    val getAllUserFollowers = repository.getAllUserFollowers()
+
 }
