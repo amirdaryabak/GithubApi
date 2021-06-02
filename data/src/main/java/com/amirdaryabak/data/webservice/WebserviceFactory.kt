@@ -1,6 +1,7 @@
 package com.amirdaryabak.data.webservice
 
 import com.amirdaryabak.data.BuildConfig
+import com.amirdaryabak.data.local.sharedpreferences.PrefsUtils
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -11,13 +12,16 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class WebserviceFactory @Inject constructor() {
+class WebserviceFactory @Inject constructor(
+    prefsUtils: PrefsUtils
+) {
 
     companion object {
-        private const val BASE_URL = "https://github.com/"
-        private const val HEADER_NAME_ACCEPT = "Content-Type"
-        private const val HEADER_VALUE_ACCEPT = "application/json"
+        private const val BASE_URL = "https://api.github.com/"
     }
+
+    private val headerNameAuthorization = "Authorization"
+    private val headerValueAuthorization = "token ${prefsUtils.getToken()}"
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
@@ -53,6 +57,10 @@ class WebserviceFactory @Inject constructor() {
             val original = chain.request()
 
             val request = original.newBuilder()
+                .header(
+                    headerNameAuthorization,
+                    headerValueAuthorization
+                )
                 .method(original.method, original.body)
                 .build()
 

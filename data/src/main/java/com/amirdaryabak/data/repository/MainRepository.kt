@@ -1,15 +1,13 @@
 package com.amirdaryabak.data.repository
 
-import com.amirdaryabak.data.entity.AccessToken
-import com.amirdaryabak.data.entity.Model
+import com.amirdaryabak.data.entity.getrepository.Repos
+import com.amirdaryabak.data.entity.getuser.User
 import com.amirdaryabak.data.utils.Resource
 
 interface MainRepository {
 
-    suspend fun getAccessToken(
-        clientId: String,
-        clientSecret: String,
-        code: String,
-    ): Resource<AccessToken>
+    suspend fun getUser(): Resource<User>
+
+    suspend fun getRepos(owner: String): Resource<Repos>
 
 }

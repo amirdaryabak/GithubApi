@@ -1,8 +1,7 @@
-package com.amirdaryabak.githubapi.githubrepository
+package com.amirdaryabak.githubapi.userprofile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.amirdaryabak.data.entity.getrepository.Repos
 import com.amirdaryabak.data.entity.getuser.User
 import com.amirdaryabak.data.repository.MainRepository
 import com.amirdaryabak.data.utils.Event
@@ -15,18 +14,18 @@ import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 @HiltViewModel
-class GithubRepositoryViewModel
+class UserProfileViewModel
 @Inject constructor(
     private val repository: MainRepository,
 ) : ViewModel() {
 
-    private val _getRepos =
-        MutableStateFlow<Event<Resource<Repos>>>(Event(Resource.empty(null)))
-    val getRepos = _getRepos
+    private val _getUser =
+        MutableStateFlow<Event<Resource<User>>>(Event(Resource.empty(null)))
+    val getUser = _getUser
 
-    fun getRepos(owner: String) = viewModelScope.launch {
-        _getRepos.value = Event(Resource.loading(null))
-        _getRepos.value = Event(repository.getRepos(owner))
+    fun getUser() = viewModelScope.launch {
+        _getUser.value = Event(Resource.loading(null))
+        _getUser.value = Event(repository.getUser())
     }
 
 }

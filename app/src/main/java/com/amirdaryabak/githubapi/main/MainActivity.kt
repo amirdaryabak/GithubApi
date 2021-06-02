@@ -41,6 +41,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupBottomNavigationBar() {
         val navGraphIds = listOf(
+            R.navigation.nav_user,
+            R.navigation.nav_repository,
             R.navigation.nav_repository,
         )
 

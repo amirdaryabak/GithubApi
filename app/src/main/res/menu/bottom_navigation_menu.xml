@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_history_cargoes_graph"
-        android:title="ریپازیتوری"
+        android:id="@+id/nav_user"
+        android:title="Profile"
         android:icon="@drawable/ic_launcher_foreground"/>
     <item
-        android:id="@+id/nav_special_cargoes_graph"
-        android:title="ویژه من"
+        android:id="@+id/nav_repository"
+        android:title="Repository"
         android:icon="@drawable/ic_launcher_foreground"/>
     <item
         android:id="@+id/nav_all_cargoes_graph"

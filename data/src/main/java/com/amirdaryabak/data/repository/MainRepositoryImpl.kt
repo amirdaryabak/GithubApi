@@ -1,6 +1,7 @@
 package com.amirdaryabak.data.repository
 
-import com.amirdaryabak.data.entity.AccessToken
+import com.amirdaryabak.data.entity.getrepository.Repos
+import com.amirdaryabak.data.entity.getuser.User
 import com.amirdaryabak.data.local.database.MyDao
 import com.amirdaryabak.data.local.sharedpreferences.PrefsUtils
 import com.amirdaryabak.data.utils.Resource
@@ -15,10 +16,9 @@ class MainRepositoryImpl
     private val api: MyWebservice
 ) : MainRepository {
 
-    override suspend fun getAccessToken(
-        clientId: String,
-        clientSecret: String,
-        code: String,
-    ): Resource<AccessToken> = safeApiCall { api.getAccessToken(clientId, clientSecret, code) }
+    override suspend fun getUser(): Resource<User> = safeApiCall { api.getUser() }
+
+    override suspend fun getRepos(owner: String): Resource<Repos> =
+        safeApiCall { api.getRepos(owner) }
 
 }

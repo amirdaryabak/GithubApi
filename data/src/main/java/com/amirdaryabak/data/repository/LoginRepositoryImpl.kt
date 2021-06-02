@@ -19,6 +19,11 @@ class LoginRepositoryImpl
         clientId: String,
         clientSecret: String,
         code: String,
-    ): Resource<AccessToken> = safeApiCall { api.getAccessToken(clientId, clientSecret, code) }
+    ): Resource<AccessToken> = safeApiCall {
+        api.getAccessToken(
+            client_id = clientId,
+            client_secret = clientSecret,
+            code = code
+    ) }
 
 }
