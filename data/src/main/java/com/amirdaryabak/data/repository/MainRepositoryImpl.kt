@@ -27,9 +27,9 @@ class MainRepositoryImpl
 
     override suspend fun insertUser(user: User) = myDao.insertUser(user)
 
-    /*override suspend fun insertRepos(repos: List<Repos>) = myDao.insertRepos(repos)
+    override suspend fun insertRepos(repos: List<Repos>) = myDao.insertRepos(repos)
 
     override suspend fun insertUserFollowers(userFollowers: List<UserFollowers>) =
-        myDao.insertUserFollowers(userFollowers)*/
+        myDao.insertUserFollowers(userFollowers)
 
 }

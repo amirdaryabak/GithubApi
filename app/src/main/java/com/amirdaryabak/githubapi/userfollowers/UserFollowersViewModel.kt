@@ -30,8 +30,8 @@ class UserFollowersViewModel
         _getFollowers.value = Event(repository.getFollowers())
     }
 
-    /*fun insertUserFollowers(userFollowers: List<UserFollowers>) = viewModelScope.launch {
+    fun insertUserFollowers(userFollowers: List<UserFollowers>) = viewModelScope.launch {
         repository.insertUserFollowers(userFollowers)
-    }*/
+    }
 
 }

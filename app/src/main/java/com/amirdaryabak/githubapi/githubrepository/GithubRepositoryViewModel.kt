@@ -29,8 +29,8 @@ class GithubRepositoryViewModel
         _getRepos.value = Event(repository.getRepos(owner))
     }
 
-    /*fun insertRepos(repos: List<Repos>) = viewModelScope.launch {
+    fun insertRepos(repos: List<Repos>) = viewModelScope.launch {
         repository.insertRepos(repos)
-    }*/
+    }
 
 }

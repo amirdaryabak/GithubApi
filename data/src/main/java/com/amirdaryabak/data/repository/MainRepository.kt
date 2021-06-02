@@ -15,8 +15,8 @@ interface MainRepository {
 
     suspend fun insertUser(user: User)
 
-    /*suspend fun insertRepos(repos: List<Repos>)
+    suspend fun insertRepos(repos: List<Repos>)
 
-    suspend fun insertUserFollowers(userFollowers: List<UserFollowers>)*/
+    suspend fun insertUserFollowers(userFollowers: List<UserFollowers>)
 
 }

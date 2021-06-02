@@ -13,10 +13,10 @@ interface MyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(user: User)
 
-    /*@Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRepos(repos: List<Repos>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertUserFollowers(userFollowers: List<UserFollowers>)*/
+    suspend fun insertUserFollowers(userFollowers: List<UserFollowers>)
 
 }
