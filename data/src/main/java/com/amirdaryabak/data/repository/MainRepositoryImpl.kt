@@ -27,6 +27,8 @@ class MainRepositoryImpl
 
     override suspend fun insertUser(user: User) = myDao.insertUser(user)
 
+    override suspend fun getLastUser(): User? = myDao.getLastUser()
+
     override suspend fun insertRepos(repos: List<Repos>) = myDao.insertRepos(repos)
 
     override suspend fun insertUserFollowers(userFollowers: List<UserFollowers>) =

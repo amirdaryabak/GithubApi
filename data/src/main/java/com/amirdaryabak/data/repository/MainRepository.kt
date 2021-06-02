@@ -15,6 +15,8 @@ interface MainRepository {
 
     suspend fun insertUser(user: User)
 
+    suspend fun getLastUser(): User?
+
     suspend fun insertRepos(repos: List<Repos>)
 
     suspend fun insertUserFollowers(userFollowers: List<UserFollowers>)

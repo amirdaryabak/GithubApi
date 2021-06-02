@@ -72,7 +72,7 @@ class LoginActivity : AppCompatActivity() {
 
 
 
-        lifecycleScope.launchWhenResumed {
+        lifecycleScope.launchWhenStarted {
             viewModel.getAccessToken.collect { event ->
                 event.getContentIfNotHandled()?.let { response ->
                     when (response.status) {

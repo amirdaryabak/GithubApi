@@ -1,6 +1,7 @@
 package com.amirdaryabak.githubapi.userprofile
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.amirdaryabak.data.entity.getuser.User
 import com.amirdaryabak.data.repository.MainRepository
@@ -23,6 +24,10 @@ class UserProfileViewModel
         MutableStateFlow<Event<Resource<User>>>(Event(Resource.empty(null)))
     val getUser = _getUser
 
+    private val _getLastUser =
+        MutableStateFlow<User?>(null)
+    val getLastUser = _getLastUser
+
     fun getUser() = viewModelScope.launch {
         _getUser.value = Event(Resource.loading(null))
         _getUser.value = Event(repository.getUser())
@@ -30,6 +35,10 @@ class UserProfileViewModel
 
     fun insertUser(user: User) = viewModelScope.launch {
         repository.insertUser(user)
+    }
+
+    fun getLastUser() = liveData {
+        emit(repository.getLastUser())
     }
 
 }

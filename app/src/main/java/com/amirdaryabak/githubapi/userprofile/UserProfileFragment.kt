@@ -44,6 +44,13 @@ class UserProfileFragment : BaseFragment(R.layout.fragment_user_profile) {
 
         viewModel.getUser()
 
+        viewModel.getLastUser().observe(viewLifecycleOwner) {
+            it?.let { user ->
+                binding.progressBar.visibility = View.GONE
+                setUpViews(user)
+            }
+        }
+
         lifecycleScope.launchWhenStarted {
             viewModel.getUser.collect { event ->
                 event.getContentIfNotHandled()?.let { response ->
